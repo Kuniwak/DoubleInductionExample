@@ -25,24 +25,8 @@ lemma nat_induct_N_0: "\<lbrakk> P Zero Zero; \<And>m n. P m n \<Longrightarrow>
 text "Double induction rule for \<nat> \<times> \<nat>"
 theorem nat_induct_M_N: "\<lbrakk> P Zero Zero; \<And>m n. P m n \<Longrightarrow> P (Suc m) n; \<And>m n. P m n \<Longrightarrow> P m (Suc n) \<rbrakk> \<Longrightarrow> P m n"
   apply(rule nat_induct)
-  apply(rule nat_induct_N_0)
+  apply(erule nat_induct_N_0)
   apply(assumption)
-
-  apply(drule_tac x=m and P="\<lambda>m. (\<And>n. P m n \<Longrightarrow> P (Suc m) n)" in meta_spec)
-  apply(drule_tac x=n and P="\<lambda>n. (P m n \<Longrightarrow> P (Suc m) n)" in meta_spec)
-  apply(drule meta_mp)
-  apply(assumption)
-  apply(assumption)
-
-  apply(drule_tac x=m and P="\<lambda>m. (\<And>n. P m n \<Longrightarrow> P m (Suc n))" in meta_spec)
-  apply(drule_tac x=n and P="\<lambda>n. (P m n \<Longrightarrow> P m (Suc n))" in meta_spec)
-  apply(drule meta_mp)
-  apply(assumption)
-  apply(assumption)
-
-  apply(drule_tac x=m and P="\<lambda>m. (\<And>n. P m n \<Longrightarrow> P m (Suc n))" in meta_spec)
-  apply(drule_tac x=n and P="\<lambda>n. (P m n \<Longrightarrow> P m (Suc n))" in meta_spec)
-  apply(drule meta_mp)
   apply(assumption)
   apply(assumption)
   done
