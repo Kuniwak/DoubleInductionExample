@@ -8,9 +8,6 @@ text "Example exlpains a proof for a cutom induction rule"
 lemma nat_induct: "\<lbrakk> P Zero; \<And>n. P n \<Longrightarrow> P (Suc n) \<rbrakk> \<Longrightarrow> P n"
   apply(rule nat.induct)
   apply(assumption)
-  apply(drule_tac x=x in meta_spec)
-  apply(drule meta_mp)
-  apply(assumption)
   apply(assumption)
   done
 
